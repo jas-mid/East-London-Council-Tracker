@@ -89,3 +89,9 @@ def merge_datasets(safe_streets_df, population_df, employees_and_debt_df):
     merged_df["Percentage Of Population Employed"] = (merged_df["Number Of Employees"] / merged_df["Population"]) * 100
     
     return merged_df
+
+
+#function to keep only the rows for the selected boroughs
+def filter_by_boroughs(df, boroughs):
+    """Returns only the rows for the named boroughs, preserving column order."""
+    return df[df["Borough"].isin(list(boroughs))]

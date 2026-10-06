@@ -8,7 +8,7 @@ st.markdown("<h1 style='text-align: center; color: white;'>East London Council C
 st.divider()
 st.subheader("Click one of the options below to navigate:")
 st.page_link("pages/statistics_page.py", label="Statistics Comparison Tool", icon="📊")
-st.page_link("pages/statistics_page.py", label="Contacting Your Council", icon="📱")
+st.page_link("pages/contacts_page.py", label="Contacting Your Council", icon="📱")
 st.divider()
 
 

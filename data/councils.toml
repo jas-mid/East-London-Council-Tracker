@@ -1,0 +1,83 @@
+# Council reference data.
+#
+# Adding a council, a kind of link, or a grouping is a data change only: no
+# Python needs editing. The loader validates this file on startup, and the
+# test suite loads it too, so a typo fails `pytest` rather than the live app.
+#
+# GSS codes are the ONS identifiers and are the join key for ONS data.
+# URLs last verified: 2026-10-06.
+
+# --- Link kinds: the categories of council page the app can display --------
+
+[[link_kinds]]
+key = "contact"
+label = "Contact Information"
+icon = "📱"
+blurb = "Raise an issue or give feedback directly to your council."
+order = 10
+
+[[link_kinds]]
+key = "voting"
+label = "Voting Information"
+icon = "✉️"
+blurb = "Register to vote and find out about upcoming local elections."
+order = 20
+
+# --- Groups: named sets of councils. A council can be in any number. -------
+# "East London" is this project's own selection, not an official sub-region.
+
+[groups.east_london]
+label = "East London"
+members = [
+    "E09000002", # Barking & Dagenham
+    "E09000012", # Hackney
+    "E09000016", # Havering
+    "E09000025", # Newham
+    "E09000026", # Redbridge
+    "E09000030", # Tower Hamlets
+    "E09000031", # Waltham Forest
+]
+
+# --- Councils ----------------------------------------------------------------
+
+[[councils]]
+gss_code = "E09000002"
+name = "Barking & Dagenham"
+links.contact = "https://www.lbbd.gov.uk/contact-us"
+links.voting = "https://www.lbbd.gov.uk/council-and-democracy/voting-and-elections/how-vote"
+
+[[councils]]
+gss_code = "E09000012"
+name = "Hackney"
+links.contact = "https://www.hackney.gov.uk/more-us/contact-us"
+links.voting = "https://www.hackney.gov.uk/council-and-elections/elections-and-voting/register-vote"
+
+[[councils]]
+gss_code = "E09000016"
+name = "Havering"
+links.contact = "https://www.havering.gov.uk/contactus"
+links.voting = "https://www.havering.gov.uk/elections-voting"
+
+[[councils]]
+gss_code = "E09000025"
+name = "Newham"
+links.contact = "https://www.newham.gov.uk/contact-information"
+links.voting = "https://www.newham.gov.uk/council/register-vote-1/3"
+
+[[councils]]
+gss_code = "E09000026"
+name = "Redbridge"
+links.contact = "https://www.redbridge.gov.uk/contact-us/"
+links.voting = "https://www.redbridge.gov.uk/voting-and-elections/register-to-vote/"
+
+[[councils]]
+gss_code = "E09000030"
+name = "Tower Hamlets"
+links.contact = "https://www.towerhamlets.gov.uk/content_pages/contact_us/contact-us.aspx"
+links.voting = "https://www.towerhamlets.gov.uk/lgnl/council_and_democracy/elections__voting/elections__voting.aspx"
+
+[[councils]]
+gss_code = "E09000031"
+name = "Waltham Forest"
+links.contact = "https://www.walthamforest.gov.uk/council-and-elections/about-us/contact-waltham-forest-council"
+links.voting = "https://www.walthamforest.gov.uk/council-and-elections/elections-and-voting"

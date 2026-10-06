@@ -1,8 +1,9 @@
 import streamlit as st
-import plotly.express as px
 import pandas as pd
-from data_handling import load_and_clean_data, merge_datasets, safe_streets_cleaning
-from data_handling import population_cleaning
+from council_tracker.charts import build_comparison_chart
+from council_tracker.cleaning import filter_by_boroughs, load_and_clean_data, merge_datasets, safe_streets_cleaning
+from council_tracker.cleaning import population_cleaning
+from council_tracker.paths import RAW_DATA_DIR
 
 #---links to other pages---
 
@@ -21,15 +22,15 @@ st.markdown("This page allows you to compare the statistics of different measure
 #---Load and clean the data---
 
 #council performance data
-employee_and_debt_data = load_and_clean_data("EDSP_employees_and_debt_data.csv")
+employee_and_debt_data = load_and_clean_data(RAW_DATA_DIR / "EDSP_employees_and_debt_data.csv")
 
 #population data
-population_data = load_and_clean_data("EDSP_population_data.csv")
+population_data = load_and_clean_data(RAW_DATA_DIR / "EDSP_population_data.csv")
 #further clean the data
 population_data = population_cleaning(population_data)
 
 #safe streets data
-safe_streets_data = load_and_clean_data("EDSP_safe_streets_data.csv")
+safe_streets_data = load_and_clean_data(RAW_DATA_DIR / "EDSP_safe_streets_data.csv")
 #further clean the data
 safe_streets_data = safe_streets_cleaning(safe_streets_data)
 
@@ -56,7 +57,7 @@ metrics = [
 selected_metrics = st.selectbox("Select Metric to Compare", metrics)
 
 #---Filter the data based on user selections---
-plot_data = performance_data[performance_data["Borough"].isin(selected_boroughs)]
+plot_data = filter_by_boroughs(performance_data, selected_boroughs)
 
 #warnings for metrics where there's no london data
 if selected_metrics=="Debt In Gbp":
@@ -74,16 +75,10 @@ if selected_metrics:
     metric = selected_metrics
 
     # defining the graph for plotly
-    fig = px.bar(
-        plot_data,
-        x="Borough",
-        y=metric,
-        color="Borough",
-        title=f"{metric} Comparison"
-    )
+    fig = build_comparison_chart(plot_data, metric)
     
     #displaying the graph
-    st.plotly_chart(fig, use_container_width=True)
+    st.plotly_chart(fig, width="stretch")
 
 #default warning for when no council is selected
 else:
