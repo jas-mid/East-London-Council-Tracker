@@ -1,5 +1,6 @@
 import streamlit as st
 
+from council_tracker.health_checker import Health, LinkCheck, check_councils
 from council_tracker.repository import get_repository
 
 repository = get_repository()
@@ -12,6 +13,11 @@ col3.page_link("pages/contacts_page.py", label="Contacting Your Council", icon="
 st.divider()
 
 st.header("Getting Your Voice Heard")
+
+#checking links are active
+@st.cache_data(ttl=60 * 60, show_spinner="Checking councils' page status...")
+def link_health() -> dict[str, LinkCheck]:
+    return {check.url: check for check in check_councils(repository.councils())}
 
 #---choose a group, only when there is more than one to choose from---
 groups = repository.groups()
@@ -47,7 +53,16 @@ for column, kind in zip(st.columns(len(available)), available):
         st.markdown(f"### {kind.label}")
         if kind.blurb:
             st.markdown(kind.blurb)
-        st.page_link(council.link(kind.key).url, label=f"{kind.label} for {council.name}", icon=kind.icon)
+        url = council.link(kind.key).url
+        check = link_health().get(url)
+
+        if check and check.health is Health.BROKEN:
+            st.warning(f"{council.name}'s {kind.lable.lower()} page seems to be offline. Tray again later.")
+            continue
+        if check and check.health is Health.MOVED:
+            url = check.final_url
+
+        st.page_link(url, label=f"{kind.label} for {council.name}", icon = kind.icon )
 
 st.divider()
 st.markdown(
