@@ -5,7 +5,7 @@ import streamlit as st
 from council_tracker import health_checker
 
 #fixing all reports to healthy
-@pytest.fixtrue(autouse=True)
+@pytest.fixture(autouse=True)
 def no_network_link_checks(monkeypatch):
     """bypasses real council checks and returns all as healthy"""
 
