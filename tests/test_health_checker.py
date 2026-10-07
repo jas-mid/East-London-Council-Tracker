@@ -1,5 +1,5 @@
 """Tests for the link health checker, using a fake HTTP client instead of the network."""
-#created by claude code
+#needs notation
 #I hate writing tests lol
 
 from types import SimpleNamespace
