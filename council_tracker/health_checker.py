@@ -1,4 +1,4 @@
-#checks all webpage links to ensure they are healthy
+"""Checks all webpage links to find their state and ensure they are healthy"""
 #run independently before app to make sure links all function
 ## python -m council_tracker.health_checker
 

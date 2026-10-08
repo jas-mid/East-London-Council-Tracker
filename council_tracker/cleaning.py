@@ -1,15 +1,16 @@
+"""Cleaning (attatched, existing) CSV data to processable standard"""
 import pandas as pd
 import re
 
 #-------- Functions for data handling and cleaning --------
 
-# Cleaning the data so that the column names are 
+# Cleaning the data so that the column names are clear
 def clean_columns(df):
     """retrieves and cleans column names so that they display correctly in the app"""
     df.columns = [re.sub(r'(_)', ' ', col).title() for col in df.columns]
     return df
 
-# Percentage to numeric conversion
+#Percentage to numeric conversion
 def convert_percentage_to_numeric(df, column_name):
     """Converts percentage strings to numeric values in the specified column."""
 
@@ -21,7 +22,7 @@ def convert_percentage_to_numeric(df, column_name):
             df[column_name] = df[column_name].str.rstrip('%').astype(float) / 100        
     return df
 
-# Function to load and clean data
+#function to load and clean data
 def load_and_clean_data(file_path):
     """Loads a dataset from the specified file path and applies cleaning functions."""
     df = pd.read_csv(file_path)
@@ -32,7 +33,7 @@ def load_and_clean_data(file_path):
         df = convert_percentage_to_numeric(df, col)
     return df
 
-# Function to convert population strings to numeric values, removing the comma for processing
+#function to convert population strings to numeric values, removing the comma for processing
 def population_to_numeric(df, column_name):
     """Converts population strings to numeric values in the specified column."""
     if df[column_name].dtype == "object":
@@ -54,7 +55,7 @@ def population_cleaning(df):
    df = population_to_numeric(df, "Population")
    return df
 
-# function to clean the safe streets data specifically
+#function to clean the safe streets data specifically
 def safe_streets_cleaning(df):
      # removing all columns that are not needed
     df = df[[

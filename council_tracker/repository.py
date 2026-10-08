@@ -1,9 +1,9 @@
-"""Where council data comes from.
+"""Council data source hub."""
 
-Pages depend on the `CouncilRepository` protocol rather than on TOML, so a new
-source (a cached ONS snapshot, a database) can be added later without
-modifying any page that consumes it.
-"""
+#Pages depend on the `CouncilRepository` protocol rather than on TOML, so a new
+#source (a cached ONS snapshot, a database) can be added later without
+#modifying any page that consumes it.
+
 from __future__ import annotations
 
 import tomllib

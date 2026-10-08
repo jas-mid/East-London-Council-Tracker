@@ -1,4 +1,4 @@
-"""Chart builders. Deliberately free of Streamlit calls so they can be unit tested."""
+"""Chart builders separated from Streamlit to be tested individually"""
 from __future__ import annotations
 
 import pandas as pd
@@ -6,6 +6,7 @@ import plotly.express as px
 import plotly.graph_objects as go
 
 
+#comparison chart builder
 def build_comparison_chart(data: pd.DataFrame, metric: str) -> go.Figure:
     """Bar chart comparing a single metric across the boroughs in `data`."""
     if metric not in data.columns:
@@ -17,6 +18,7 @@ BOROUGH_COLOUR = "#2a78d6"
 REFERENCE_COLOUR = "#8c8b87"
 
 
+#
 def build_indicator_chart(
         boroughs: pd.DataFrame,
         references: pd.DataFrame,
