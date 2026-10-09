@@ -1,5 +1,11 @@
+"""Page where local CSV file data is displayed"""
+
+#only uses the data from the included files. API data is separate
+#used to compare on non-callable metrics downloaded and manually cleaned
+
 import streamlit as st
 import pandas as pd
+
 from council_tracker.charts import build_comparison_chart
 from council_tracker.cleaning import filter_by_boroughs, load_and_clean_data, merge_datasets, safe_streets_cleaning
 from council_tracker.cleaning import population_cleaning

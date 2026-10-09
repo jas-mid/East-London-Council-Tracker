@@ -1,30 +1,99 @@
-Summary:
-The goal of the East London Council Comparison Application is to be a tool used to compare the performance of councils in East London. The application puts certain council-controlled metrics into perspective in relation to the Greater London average and other East London councils. It does this by graphically displaying the metrics as bar graphs within the frame of the largest value within the metric. The bar graph can be interacted with to see the specific values of each metric, and users can zoom in and out to see finer or broader details.
+# East London Council Tracker
 
-The goal of the app is to raise awareness among residents so that they know what their council needs to improve, since other councils in similar situations are performing better in the same metrics. It further provides the information and means on how you can reach out to your council and how you can get your voice heard in your local area. It does this by directing you to the contact us page of the council. It also provides information surrounding voting and connects the user to the voting registration page for each council.
+A Streamlit app for comparing how East London councils perform, and for helping residents contact their council and get their voice heard locally.
 
-To run the code:
-1) Pip install all libraries below:
-- pandas==2.3.3
-- plotly==6.6.0
-- pytest==9.0.2
-- streamlit==1.53.1
-- (if dependencies are not met, run "pip install -r requirements.txt")
+## About
 
-2) In the terminal, paste and run "streamlit run app.py"
+The East London Council Comparison App compares council-controlled metrics across East London boroughs and sets them against the Greater London average. Each metric is shown as an interactive bar chart, scaled to the largest value for that metric. You can hover over a bar to see its exact value, and zoom in or out to see more or less detail.
 
-3) Open your (default) browser to the page that Streamlit opened
+The goal is to raise awareness among residents. When a similar council is doing better on the same metric, residents can see what their own council needs to improve. The app then helps them act on it: it links to each council's "contact us" page, gives information about voting, and links to the voter registration page for each council.
 
+## Features
 
+- **Statistics Comparison Tool**: choose councils and a metric, then compare them side by side and against the Greater London average.
+- **Contacting Your Council**: find the contact details for your local council, with tips on how to contact them effectively. The app checks that each link still works.
+- **Voting information**: links to voter registration for each council.
 
+## Getting Started
 
-To-do List:
-- Add pings to page links to ensure that they are active
-- Implement APIs to get active data
-- Use more data sources to get more data to judge with
-- News feeds implementation
-- Add weekly voting
-- Improve layout and flow (more intuitive design)
-- Improve GitHub page to display professionally
-- Expand to all of the boroughs?
-- Make into a web page and host?
+### Prerequisites
+
+- Python 3.10 or later
+- pip
+
+### Installation
+
+1. Clone the repository:
+
+   ```bash
+   git clone https://github.com/jas-mid/East-London-Council-Tracker
+   cd East-London-Council-Tracker
+   ```
+
+2. (Optional) Create and activate a virtual environment:
+
+   ```bash
+   python -m venv venv
+   # Windows
+   venv\Scripts\activate
+   # macOS / Linux
+   source venv/bin/activate
+   ```
+
+3. Install the dependencies:
+
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+### Running the App
+
+```bash
+streamlit run app.py
+```
+
+Streamlit will open the app in your default browser. If it doesn't, open the local URL shown in the terminal.
+
+## Running Tests
+
+Install the development dependencies, then run pytest:
+
+```bash
+pip install -r requirements-dev.txt
+pytest
+```
+
+## Project Structure
+
+```text
+├── app.py                  # Home page and navigation
+├── pages/
+│   ├── statistics_page.py  # Statistics comparison tool
+│   └── contacts_page.py    # Council contact and voting links
+├── council_tracker/        # Core package (data loading, cleaning, charts, ONS client, link health checks)
+├── data/                   # Council config and raw data
+├── tests/                  # Pytest test suite
+├── requirements.txt        # Runtime dependencies
+└── requirements-dev.txt    # Development/test dependencies
+```
+
+## Built With
+
+- [Streamlit](https://streamlit.io/): web app framework
+- [pandas](https://pandas.pydata.org/): data handling
+- [Plotly](https://plotly.com/python/): interactive charts
+- [Requests](https://requests.readthedocs.io/): HTTP requests (ONS API and link checks)
+- [ONS Explore Local Statistics API](https://www.ons.gov.uk/explore-local-statistics/): source data
+
+## To-Do List
+
+- [ ] Add the source location of each data piece and when it was last updated for CSV then later API
+- [ ] Implement APIs to get active data
+- [ ] Use more data sources to get more data to judge with
+- [ ] News feeds implementation
+- [ ] Add data in raw form or look for ways to implement without just dumping in CSV files (for 'dumb' data)
+- [ ] Add weekly voting
+- [ ] Improve layout and flow (more intuitive design)
+- [ ] Improve GitHub page to display professionally
+- [ ] Expand to all of the boroughs?
+- [ ] Make into a web page and host?

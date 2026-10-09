@@ -1,4 +1,4 @@
-"""Council data source hub."""
+"""Council data source hub. compiles all the repositories of data through one file"""
 
 #Pages depend on the `CouncilRepository` protocol rather than on TOML, so a new
 #source (a cached ONS snapshot, a database) can be added later without

@@ -1,3 +1,7 @@
+"""Page compiling all the councils and contacts"""
+
+#features links to their contacts page and voting information page
+
 import streamlit as st
 
 from council_tracker.health_checker import Health, LinkCheck, check_councils
@@ -26,7 +30,7 @@ if len(groups) > 1:
 else:
     group = groups[0]
 
-#---choose a council within that group---
+#choose a council within that group
 st.sidebar.subheader("Select Your Council")
 council = st.sidebar.radio(
     "Your council",
@@ -36,13 +40,14 @@ council = st.sidebar.radio(
     label_visibility="collapsed",
 )
 
+#default load when no council is selected
 if council is None:
     st.info("Select your council in the sidebar to see how to contact them and how to vote.")
     st.stop()
 
 st.subheader(f"{council.name} Council")
 
-#---one column per kind of page this council publishes---
+#one column per kind of page this council publishes
 available = [kind for kind in repository.link_kinds() if council.link(kind.key)]
 if not available:
     st.warning(f"We don't have any pages recorded for {council.name} yet.")
@@ -64,6 +69,7 @@ for column, kind in zip(st.columns(len(available)), available):
 
         st.page_link(url, label=f"{kind.label} for {council.name}", icon = kind.icon )
 
+#bottom of page information
 st.divider()
 st.markdown(
     "To find out when the next local elections are in your area, visit the "
