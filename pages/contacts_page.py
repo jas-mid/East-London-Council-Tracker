@@ -10,10 +10,11 @@ from council_tracker.repository import get_repository
 repository = get_repository()
 
 #---links to other pages---
-col1, col2, col3 = st.columns(3)
+col1, col2, col3, col4 = st.columns(4)
 col1.page_link("app.py", label="Home", icon="🏠")
 col2.page_link("pages/statistics_page.py", label="Statistics Comparison Tool", icon="📊")
 col3.page_link("pages/contacts_page.py", label="Contacting Your Council", icon="📱", disabled=True)
+col4.page_link("pages/licence_page.py", label="Licence & Data Sources", icon="📄")
 st.divider()
 
 st.header("Getting Your Voice Heard")

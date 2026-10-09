@@ -14,11 +14,12 @@ from council_tracker.paths import RAW_DATA_DIR
 #---links to other pages---
 
 #using columns to make the page links go next to eachother instead of on top of each other
-col1, col2, col3 = st.columns(3)
+col1, col2, col3, col4 = st.columns(4)
 #page links
 col1.page_link("app.py", label="Home", icon="🏠")
 col2.page_link("pages/statistics_page.py", label="Statistics Comparison Tool", icon="📊",disabled=True)
 col3.page_link("pages/contacts_page.py", label="Contacting Your Borough", icon="📱")
+col4.page_link("pages/licence_page.py", label="Licence & Data Sources", icon="📄")
 st.divider()
 
 #---Title and introduction to the page---

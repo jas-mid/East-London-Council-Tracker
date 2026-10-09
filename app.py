@@ -9,6 +9,7 @@ st.divider()
 st.subheader("Click one of the options below to navigate:")
 st.page_link("pages/statistics_page.py", label="Statistics Comparison Tool", icon="📊")
 st.page_link("pages/contacts_page.py", label="Contacting Your Council", icon="📱")
+st.page_link("pages/licence_page.py", label="Licence & Data Sources", icon="📄")
 st.divider()
 
 

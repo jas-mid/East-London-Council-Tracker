@@ -32,7 +32,11 @@ def test_selecting_a_council_renders_each_of_its_links(council):
     assert {link.url for link in council.links} <= rendered_urls(app)
 
 
-@pytest.mark.parametrize("page", [None, "pages/statistics_page.py"], ids=["home", "statistics"])
+@pytest.mark.parametrize(
+    "page",
+    [None, "pages/statistics_page.py", "pages/licence_page.py"],
+    ids=["home", "statistics", "licence"],
+)
 def test_page_renders_without_errors(page):
     app = AppTest.from_file(str(PROJECT_ROOT / "app.py"))
     if page:
